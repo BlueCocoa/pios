@@ -35,9 +35,13 @@ void UART::init(uint32_t baudrate) {
     ra |= 2 << 15;
     PUT32(GPFSEL1, ra);
     PUT32(GPPUD, 0);
-    for(ra = 0; ra < 150; ra++) wait_op();
+    for (ra = 0; ra < 150; ra++) {
+        wait_op();
+    }
     PUT32(GPPUDCLK0, (1 << 14) | (1 << 15));
-    for(ra = 0; ra < 150; ra++) wait_op();
+    for (ra = 0; ra < 150; ra++) {
+        wait_op();
+    }
     PUT32(GPPUDCLK0, 0);
     PUT32(AUX_MU_CNTL_REG, 3);
 }
@@ -48,8 +52,12 @@ void UART::init(uint32_t baudrate) {
  @return exactly 1 byte in uint32_t
  */
 uint32_t UART::read_byte() {
-    while(1)
-        if(GET32(AUX_MU_LSR_REG) & 0x01) break;
+    while (1) {
+        if (GET32(AUX_MU_LSR_REG) & 0x01) {
+            break;
+        }
+    }
+
     return(GET32(AUX_MU_IO_REG) & 0xFF);
 }
 
@@ -87,7 +95,9 @@ void UART::read_line(char * str) {
  */
 void UART::write_byte(const uint32_t byte) {
     while (1) {
-        if (GET32(AUX_MU_LSR_REG) & 0x20) break;
+        if (GET32(AUX_MU_LSR_REG) & 0x20) {
+            break;
+        }
     }
     PUT32(AUX_MU_IO_REG, byte);
 }

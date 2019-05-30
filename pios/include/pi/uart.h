@@ -9,7 +9,7 @@
 #ifndef __PI_URAT_H
 #define __PI_URAT_H
 
-#include <pi/pi.h>
+#include <pi/peripherals.h>
 #include <sys/types.h>
 
 #define AUX_BASE            (ARM_PERIPHERALS_BASE + 0x215000)
