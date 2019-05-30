@@ -36,3 +36,8 @@ extern "C"
 void wait_op(void) {
     
 }
+
+extern "C"
+void delay(uint32_t) {
+
+}
