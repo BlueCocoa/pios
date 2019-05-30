@@ -1,2 +1,6 @@
 .DS_Store
+pios/build/kernel8.img
+pios/objs/*.d
+pios/objs/*.o
+pios/objs/kernel8.elf
 
