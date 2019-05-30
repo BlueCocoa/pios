@@ -9,8 +9,8 @@
 #ifndef __PI_GPIO_H
 #define __PI_GPIO_H
 
+#include <pi/peripherals.h>
 #include <sys/types.h>
-
 
 #define GPIO_BASE       (ARM_PERIPHERALS_BASE + 0x200000)
 
@@ -63,5 +63,79 @@
 #define GPIO_CMD        49
 #define GPIO_CLK        48
 #define GPIO_CD         47
+
+namespace pi {
+
+namespace gpio {
+    enum function_t {
+        INPUT  = 0b000,
+        OUTPUT = 0b001,
+        ALT0   = 0b100,
+        ALT1   = 0b101,
+        ALT2   = 0b110,
+        ALT3   = 0b111,
+        ALT4   = 0b110,
+        ALT5   = 0b010
+    };
+
+    /**
+     set function of GPIO pin
+
+     @param pin         GPIO pin
+     @param function    one in the enum `pi::gpio::function_t`
+     */
+    void set_function(uint32_t pin, function_t function);
+
+    /**
+     turn on/off a GPIO pin
+
+     @param pin     requested GPIO pin
+     @param on      true for on, false for off
+     */
+    void set(uint32_t pin, bool on);
+
+    enum pull_t {
+        PULL_DISABLE = 0x0,
+        PULL_DOWN    = 0x1,
+        PULL_UP      = 0x2,
+    };
+
+    /**
+     set pull for GPIO pin
+
+     @param pin     requested GPIO pin
+     @param pull    one of the enum `pi::gpio::pull_t`
+     @param on      true for on, false for off
+     */
+    void pull(uint32_t pin, pull_t pull, bool on = true);
+
+    enum gpio_event_t {
+        RASING_EDGE         = 0x4C,
+        FALLING_EDGE        = 0x58,
+        HIGH                = 0x64,
+        LOW                 = 0x70,
+        ASYNC_RASING_EDGE   = 0x7C,
+        ASYNC_FALLING_EDGE  = 0x88
+    };
+
+    /**
+     detect GPIO pin event
+
+     @param pin     requested GPIO pin
+     @param event   one of the enum `pi::gpio::gpio_event_t`
+     */
+    void detect_event(uint32_t pin, gpio_event_t event);
+
+    /**
+     detect GPIO pin level
+
+     @param pin requested GPIO pin
+
+     @return level
+     */
+    bool level(uint32_t pin);
+}
+
+}
 
 #endif /* __PI_GPIO_H */
