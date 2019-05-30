@@ -1,7 +1,15 @@
-ARMGNU ?= aarch64-linux-gnu
+ARMGNU32 ?= arm-linux-gnueabihf
+CC32 = gcc-8
+CPP32 = g++-8
 
-COPS = -Wall -nostdlib -nostartfiles -ffreestanding -Iinclude -mgeneral-regs-only
-ASMOPS = -Iinclude 
+ARMGNU ?= aarch64-linux-gnu
+CC = gcc
+CPP = g++
+
+ARCH ?= -march=armv8-a -mtune=cortex-a53
+CFLAGS = $(ARCH) -Wall -nostdinc -nostdlib -fno-builtin -nostartfiles -ffreestanding -Iinclude -mgeneral-regs-only
+CPPFLAGS += $(CFLAGS) -std=c++14 -fno-exceptions -fno-rtti -nostartfiles
+ASMFLAGS = -Iinclude
 
 BUILD_DIR = build
 OBJS_DIR = objs
@@ -14,14 +22,14 @@ clean :
 
 $(OBJS_DIR)/%_c.o: $(SRC_DIR)/%.c
 	mkdir -p $(@D)
-	$(ARMGNU)-gcc $(COPS) -MMD -c $< -o $@
+	$(ARMGNU)-$(CC) $(CFLAGS) -MMD -c $< -o $@
 	
 $(OBJS_DIR)/%_cpp.o: $(SRC_DIR)/%.cpp
 	mkdir -p $(@D)
-	$(ARMGNU)-g++ -std=c++14 $(COPS) -MMD -c $< -o $@
+	$(ARMGNU)-$(CPP) $(CPPFLAGS) -MMD -c $< -o $@
 
 $(OBJS_DIR)/%_s.o: $(SRC_DIR)/%.S
-	$(ARMGNU)-gcc $(ASMOPS) -MMD -c $< -o $@
+	$(ARMGNU)-$(CC) $(ASMFLAGS) -MMD -c $< -o $@
 
 C_FILES = $(wildcard $(SRC_DIR)/*.c)
 CPP_FILES = $(wildcard $(SRC_DIR)/*.cpp)
