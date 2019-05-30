@@ -11,8 +11,10 @@
 
 #include <pi/peripherals.h>
 #include <pi/extern.h>
-#include <pi/mem.h>
 #include <pi/gpio.h>
+#include <pi/graphics.h>
+#include <pi/mailbox.h>
+#include <pi/mem.h>
 #include <pi/uart.h>
 
 #endif /* __PI_PI_H */
