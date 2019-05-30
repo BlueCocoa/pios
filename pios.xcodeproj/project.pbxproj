@@ -11,6 +11,10 @@
 		4006600E229FE238006209C5 /* uart.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4006600D229FE238006209C5 /* uart.cpp */; };
 		40066011229FE438006209C5 /* mem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 40066010229FE438006209C5 /* mem.cpp */; };
 		40066018229FF0D7006209C5 /* dummy.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 40066017229FF0D7006209C5 /* dummy.cpp */; };
+		40AD75FA22A041F60028C205 /* gpio.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 40AD75F922A041F60028C205 /* gpio.cpp */; };
+		40C5602922A014E100748DD7 /* mailbox.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 40C5602822A014E100748DD7 /* mailbox.cpp */; };
+		40C5602D22A02B9600748DD7 /* ctype.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 40C5602C22A02B9600748DD7 /* ctype.cpp */; };
+		40C88575229FF789006A3732 /* graphics.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 40C88574229FF789006A3732 /* graphics.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +34,15 @@
 		40066015229FE7F0006209C5 /* extern.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = extern.h; sourceTree = "<group>"; };
 		40066016229FEEAC006209C5 /* peripherals.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = peripherals.h; sourceTree = "<group>"; };
 		40066017229FF0D7006209C5 /* dummy.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = dummy.cpp; sourceTree = "<group>"; };
+		40AD75F922A041F60028C205 /* gpio.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = gpio.cpp; sourceTree = "<group>"; };
+		40C5602822A014E100748DD7 /* mailbox.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = mailbox.cpp; sourceTree = "<group>"; };
+		40C5602B22A02B4100748DD7 /* ctype.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ctype.h; sourceTree = "<group>"; };
+		40C5602C22A02B9600748DD7 /* ctype.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ctype.cpp; sourceTree = "<group>"; };
+		40C5602E22A02F1200748DD7 /* fonts.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = fonts.h; sourceTree = "<group>"; };
+		40C5603022A033CB00748DD7 /* barrier.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = barrier.h; sourceTree = "<group>"; };
+		40C88573229FF598006A3732 /* graphics.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = graphics.h; sourceTree = "<group>"; };
+		40C88574229FF789006A3732 /* graphics.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = graphics.cpp; sourceTree = "<group>"; };
+		40C88576229FFBB3006A3732 /* mailbox.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = mailbox.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -65,7 +78,11 @@
 		40065FFA229FDEEE006209C5 /* src */ = {
 			isa = PBXGroup;
 			children = (
+				40C88574229FF789006A3732 /* graphics.cpp */,
+				40AD75F922A041F60028C205 /* gpio.cpp */,
+				40C5602C22A02B9600748DD7 /* ctype.cpp */,
 				40066010229FE438006209C5 /* mem.cpp */,
+				40C5602822A014E100748DD7 /* mailbox.cpp */,
 				4006600D229FE238006209C5 /* uart.cpp */,
 				40065FFB229FDF02006209C5 /* start.S */,
 				40065FFD229FDF0C006209C5 /* linker.ld */,
@@ -77,6 +94,9 @@
 		40065FFF229FDF2E006209C5 /* include */ = {
 			isa = PBXGroup;
 			children = (
+				40C5602E22A02F1200748DD7 /* fonts.h */,
+				40C5602F22A033BD00748DD7 /* asm */,
+				40C5602B22A02B4100748DD7 /* ctype.h */,
 				4006600B229FE1B0006209C5 /* pi */,
 				40066000229FDF37006209C5 /* sys */,
 			);
@@ -109,14 +129,24 @@
 		4006600B229FE1B0006209C5 /* pi */ = {
 			isa = PBXGroup;
 			children = (
+				40C88573229FF598006A3732 /* graphics.h */,
 				40066013229FE5ED006209C5 /* gpio.h */,
 				4006600C229FE1DA006209C5 /* uart.h */,
 				40066012229FE599006209C5 /* pi.h */,
 				40066016229FEEAC006209C5 /* peripherals.h */,
+				40C88576229FFBB3006A3732 /* mailbox.h */,
 				40066015229FE7F0006209C5 /* extern.h */,
 				4006600F229FE410006209C5 /* mem.h */,
 			);
 			path = pi;
+			sourceTree = "<group>";
+		};
+		40C5602F22A033BD00748DD7 /* asm */ = {
+			isa = PBXGroup;
+			children = (
+				40C5603022A033CB00748DD7 /* barrier.h */,
+			);
+			path = asm;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -185,7 +215,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "/usr/local/bin/docker run --rm -v \"${SRCROOT}/pios:/src\" pios make\n";
+			shellScript = "rm -rf \"${SRCROOT}/pios/objs\"\nmkdir -p \"${SRCROOT}/pios/objs\"\n/usr/local/bin/docker run --rm -v \"${SRCROOT}/pios:/src\" pios make\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -194,10 +224,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				40AD75FA22A041F60028C205 /* gpio.cpp in Sources */,
 				40066011229FE438006209C5 /* mem.cpp in Sources */,
 				40066007229FE142006209C5 /* kernel.cpp in Sources */,
+				40C5602922A014E100748DD7 /* mailbox.cpp in Sources */,
+				40C5602D22A02B9600748DD7 /* ctype.cpp in Sources */,
 				40066018229FF0D7006209C5 /* dummy.cpp in Sources */,
 				4006600E229FE238006209C5 /* uart.cpp in Sources */,
+				40C88575229FF789006A3732 /* graphics.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
