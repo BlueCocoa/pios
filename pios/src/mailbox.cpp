@@ -10,6 +10,10 @@
 #include <pi/peripherals.h>
 #include <pi/mem.h>
 
+#ifdef DEBUG
+#include <pi/uart.h>
+#endif
+
 using namespace pi;
 
 static uint32_t RESPONSE_TABLE [] = { 0, 4, 6, 8, 16, 136, 1024 };
@@ -23,6 +27,11 @@ static uint32_t REQUEST_TABLE [] = { 0, 4, 8, 12, 16, 24, 28 };
  @return value read from that channel
  */
 uint32_t mailbox::read(uint32_t channel) {
+#ifdef DEBUG
+    UART::write("mailbox read channel: ");
+    UART::write_digit32(channel);
+    UART::write_line("");
+#endif
     uint32_t ret;
 
     while (1) {
@@ -46,6 +55,12 @@ uint32_t mailbox::read(uint32_t channel) {
         }
     }
 
+#ifdef DEBUG
+    UART::write("mailbox did read: ");
+    UART::write_digit32(ret);
+    UART::write_line("");
+#endif
+
     return ret;
 }
 
@@ -56,6 +71,12 @@ uint32_t mailbox::read(uint32_t channel) {
  @param value value for writing
  */
 void mailbox::write(uint32_t channel, uint32_t value) {
+#ifdef DEBUG
+    UART::write("mailbox write: ");
+    UART::write_digit32((value << 4) | channel);
+    UART::write_line("");
+#endif
+
     // wait for mailbox if it reports full
     while (GET32(MAILBOX_STATUS) & MAIL_FULL) { }
 
@@ -65,6 +86,11 @@ void mailbox::write(uint32_t channel, uint32_t value) {
     // write to mailbox
     PUT32(MAILBOX_WRITE, (value << 4) | channel);
 
+#ifdef DEBUG
+    UART::write("mailbox did write: ");
+    UART::write_digit32((value << 4) | channel);
+    UART::write_line("");
+#endif
     // apply memory barrier after put
     mem::barrier();
 }
