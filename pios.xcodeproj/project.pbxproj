@@ -34,6 +34,7 @@
 		40066015229FE7F0006209C5 /* extern.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = extern.h; sourceTree = "<group>"; };
 		40066016229FEEAC006209C5 /* peripherals.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = peripherals.h; sourceTree = "<group>"; };
 		40066017229FF0D7006209C5 /* dummy.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = dummy.cpp; sourceTree = "<group>"; };
+		400776CE22A3D46A00D5D3E2 /* start.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = start.h; sourceTree = "<group>"; };
 		40AD75F922A041F60028C205 /* gpio.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = gpio.cpp; sourceTree = "<group>"; };
 		40C5602822A014E100748DD7 /* mailbox.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = mailbox.cpp; sourceTree = "<group>"; };
 		40C5602B22A02B4100748DD7 /* ctype.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ctype.h; sourceTree = "<group>"; };
@@ -94,6 +95,7 @@
 		40065FFF229FDF2E006209C5 /* include */ = {
 			isa = PBXGroup;
 			children = (
+				400776CE22A3D46A00D5D3E2 /* start.h */,
 				40C5602E22A02F1200748DD7 /* fonts.h */,
 				40C5602F22A033BD00748DD7 /* asm */,
 				40C5602B22A02B4100748DD7 /* ctype.h */,
