@@ -36,7 +36,7 @@ uint32_t mailbox::read(uint32_t channel) {
 
     while (1) {
         // wait for mailbox if it reports empty
-        while (GET32(MAILBOX_STATUS) & MAIL_EMPTY) { }
+        while (empty()) { }
 
         // apply memory barrier before get
         mem::barrier();
@@ -78,7 +78,7 @@ void mailbox::write(uint32_t channel, uint32_t value) {
 #endif
 
     // wait for mailbox if it reports full
-    while (GET32(MAILBOX_STATUS) & MAIL_FULL) { }
+    while (full()) { }
 
     // apply memory barrier before put
     mem::barrier();
@@ -93,6 +93,25 @@ void mailbox::write(uint32_t channel, uint32_t value) {
 #endif
     // apply memory barrier after put
     mem::barrier();
+}
+
+
+/**
+ is mailbox full
+
+ @return true if full
+ */
+bool mailbox::full() {
+    return GET32(MAILBOX_STATUS) & MAIL_FULL;
+}
+
+/**
+ is mailbox empty
+
+ @return true if empty
+ */
+bool mailbox::empty() {
+    return GET32(MAILBOX_STATUS) & MAIL_EMPTY;
 }
 
 /**

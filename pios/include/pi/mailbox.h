@@ -123,6 +123,20 @@ namespace mailbox {
      */
     void write(uint32_t channel, uint32_t value);
 
+    /**
+     is mailbox full
+
+     @return true if full
+     */
+    bool full();
+
+    /**
+     is mailbox empty
+
+     @return true if empty
+     */
+    bool empty();
+
     enum property_t {
         //                  Bit |      31 ... 26     |     25 ... 20    |   19 ... 0
         //                      |     Res Length     |    Req Length    |      Tag
