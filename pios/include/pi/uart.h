@@ -92,6 +92,20 @@ namespace UART {
     void write(const char * str);
 
     /**
+     write 32bit digit in hex to UART
+
+     @param data the digit to write
+     */
+    void write_digit32(uint32_t data);
+
+    /**
+     write 64bit digit in hex to UART
+
+     @param data the digit to write
+     */
+    void write_digit64(uint64_t data);
+
+    /**
      write string to UART with extra '\r\n' at last
 
      @param str the string to write

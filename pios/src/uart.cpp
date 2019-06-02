@@ -116,6 +116,44 @@ void UART::write(const char * str) {
 }
 
 /**
+ write 32bit digit in hex to UART
+
+ @param data the digit to write
+ */
+void UART::write_digit32(uint32_t data) {
+    unsigned int rb;
+    unsigned int rc;
+    rb = 32;
+    while (1) {
+        rb -= 4;
+        rc = (data >> rb) & 0xF;
+        if(rc > 9) rc += 0x37;
+        else rc += 0x30;
+        write_byte(rc);
+        if(rb == 0) break;
+    }
+}
+
+/**
+ write 64bit digit in hex to UART
+
+ @param data the digit to write
+ */
+void UART::write_digit64(uint64_t data) {
+    unsigned int rb;
+    unsigned int rc;
+    rb = 64;
+    while (1) {
+        rb -= 4;
+        rc = (data >> rb) & 0xF;
+        if(rc > 9) rc += 0x37;
+        else rc += 0x30;
+        write_byte(rc);
+        if(rb == 0) break;
+    }
+}
+
+/**
  write string to UART with extra '\r\n' at last
 
  @param str the string to write
