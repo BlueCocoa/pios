@@ -12,6 +12,10 @@
 #include <ctype.h>
 #include <fonts.h>
 
+#ifdef DEBUG
+#include <pi/uart.h>
+#endif
+
 using namespace pi;
 
 /**
@@ -97,7 +101,23 @@ bool graphics::init(uint32_t width, uint32_t height, uint32_t depth, bool double
     frame_buffer_info.buffer_size = 0;
 
     // get address of frame_buffer_info
-    uint32_t request = (uint32_t)((uint64_t)&frame_buffer_info);
+    // add 0xC0000000 since we enabled VC MMU
+    uint32_t request = (uint32_t)((uint64_t)&frame_buffer_info) + 0xC0000000;
+    request >>= 4;
+
+#ifdef DEBUG
+    UART::write("frame_buffer_info: ");
+    UART::write_digit64((uint64_t)&frame_buffer_info);
+    UART::write_line("");
+
+    UART::write("frame_buffer_info VA: ");
+    UART::write_digit32(frame_buffer_info.buffer_ptr);
+    UART::write_line("");
+
+    UART::write("frame_buffer_info PA: ");
+    UART::write_digit32(frame_buffer_info.buffer_ptr - 0xC0000000);
+    UART::write_line("");
+#endif
 
     // send framebuffer allocation request to mailbox
     mailbox::write(1, request);
@@ -106,15 +126,24 @@ bool graphics::init(uint32_t width, uint32_t height, uint32_t depth, bool double
     uint32_t ret = 0xFF;
     do {
         ret = mailbox::read(1);
-    } while (ret != 0);
+
+#ifdef DEBUG
+        UART::write("frame_buffer_info VA: ");
+        UART::write_digit32(frame_buffer_info.buffer_ptr);
+        UART::write_line("");
+
+        UART::write("frame_buffer_info PA: ");
+        UART::write_digit32(frame_buffer_info.buffer_ptr - 0xC0000000);
+        UART::write_line("");
+#endif
+    } while (!(ret == 0 || ret == 1));
 
     // and sometimes, bad things happen
     if (frame_buffer_info.buffer_ptr == 0) return false;
     if (frame_buffer_info.pitch == 0) return false;
 
-#warning NO MMU assumed
     // convert to physical address
-    frame_buffer_info.buffer_ptr = frame_buffer_info.buffer_ptr - 0x40000000;
+    frame_buffer_info.buffer_ptr = frame_buffer_info.buffer_ptr - 0xC0000000;
 
     // set corresponding screen info
     screen_info.char_size_x = 6;
