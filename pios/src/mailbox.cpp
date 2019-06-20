@@ -10,7 +10,7 @@
 #include <pi/peripherals.h>
 #include <pi/mem.h>
 
-#ifdef DEBUG
+#if DEBUG
 #include <pi/uart.h>
 #endif
 
@@ -27,7 +27,7 @@ static uint32_t REQUEST_TABLE [] = { 0, 4, 8, 12, 16, 24, 28 };
  @return value read from that channel
  */
 uint32_t mailbox::read(uint32_t channel) {
-#ifdef DEBUG
+#if DEBUG
     UART::write("mailbox read channel: ");
     UART::write_digit32(channel);
     UART::write_line("");
@@ -55,7 +55,7 @@ uint32_t mailbox::read(uint32_t channel) {
         }
     }
 
-#ifdef DEBUG
+#if DEBUG
     UART::write("mailbox did read: ");
     UART::write_digit32(ret);
     UART::write_line("");
@@ -71,7 +71,7 @@ uint32_t mailbox::read(uint32_t channel) {
  @param value value for writing
  */
 void mailbox::write(uint32_t channel, uint32_t value) {
-#ifdef DEBUG
+#if DEBUG
     UART::write("mailbox write: ");
     UART::write_digit32((value << 4) | channel);
     UART::write_line("");
@@ -86,7 +86,7 @@ void mailbox::write(uint32_t channel, uint32_t value) {
     // write to mailbox
     PUT32(MAILBOX_WRITE, (value << 4) | channel);
 
-#ifdef DEBUG
+#if DEBUG
     UART::write("mailbox did write: ");
     UART::write_digit32((value << 4) | channel);
     UART::write_line("");

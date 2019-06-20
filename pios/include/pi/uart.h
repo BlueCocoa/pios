@@ -61,6 +61,15 @@ namespace UART {
      @return exactly 1 byte in uint32_t
      */
     uint32_t read_byte();
+    
+    /**
+     read until encounters given terminator or n bytes at max
+     
+     @param str a pointer to a string which has pre-allocated free space
+     @param terminator terminator
+     @return #bytes read
+     */
+    uint64_t readn_until(char * str, char terminator, uint32_t n);
 
     /**
      read until encounters given terminator

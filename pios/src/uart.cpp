@@ -62,14 +62,39 @@ uint32_t UART::read_byte() {
 }
 
 /**
+ read until encounters given terminator or n bytes at max
+ 
+ @param str a pointer to a string which has pre-allocated free space
+ @param terminator terminator
+ */
+uint64_t UART::readn_until(char * str, char terminator, uint32_t n) {
+    if (n == 0) {
+        return 0;
+    }
+    
+    uint64_t length = 0;
+    uint8_t byte = read_byte();
+    while (byte != terminator) {
+        str[length] = byte;
+        length++;
+        if (length == n) {
+            break;
+        }
+        byte = read_byte();
+    }
+    str[length] = '\0';
+    return length;
+}
+
+/**
  read until encounters given terminator
 
  @param str a pointer to a string which has pre-allocated free space
  @param terminator terminator
  */
 void UART::read_until(char * str, char terminator) {
-    unsigned int length = 0;
-    unsigned int byte = read_byte();
+    uint64_t length = 0;
+    uint8_t byte = read_byte();
     while (byte != terminator) {
         str[length] = byte;
         length++;

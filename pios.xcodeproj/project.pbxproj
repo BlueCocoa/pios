@@ -11,6 +11,7 @@
 		4006600E229FE238006209C5 /* uart.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4006600D229FE238006209C5 /* uart.cpp */; };
 		40066011229FE438006209C5 /* mem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 40066010229FE438006209C5 /* mem.cpp */; };
 		40066018229FF0D7006209C5 /* dummy.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 40066017229FF0D7006209C5 /* dummy.cpp */; };
+		4084EAA422BA453E00E115D0 /* string.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4084EAA322BA453E00E115D0 /* string.cpp */; };
 		40AD75FA22A041F60028C205 /* gpio.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 40AD75F922A041F60028C205 /* gpio.cpp */; };
 		40C5602922A014E100748DD7 /* mailbox.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 40C5602822A014E100748DD7 /* mailbox.cpp */; };
 		40C5602D22A02B9600748DD7 /* ctype.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 40C5602C22A02B9600748DD7 /* ctype.cpp */; };
@@ -35,6 +36,9 @@
 		40066016229FEEAC006209C5 /* peripherals.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = peripherals.h; sourceTree = "<group>"; };
 		40066017229FF0D7006209C5 /* dummy.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = dummy.cpp; sourceTree = "<group>"; };
 		400776CE22A3D46A00D5D3E2 /* start.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = start.h; sourceTree = "<group>"; };
+		4084EAA322BA453E00E115D0 /* string.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = string.cpp; sourceTree = "<group>"; };
+		4084EAA522BA454B00E115D0 /* string.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = string.h; sourceTree = "<group>"; };
+		4084EAA622BA733200E115D0 /* PiDebuggerConstant.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PiDebuggerConstant.h; sourceTree = "<group>"; };
 		40AD75F922A041F60028C205 /* gpio.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = gpio.cpp; sourceTree = "<group>"; };
 		40C5602822A014E100748DD7 /* mailbox.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = mailbox.cpp; sourceTree = "<group>"; };
 		40C5602B22A02B4100748DD7 /* ctype.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ctype.h; sourceTree = "<group>"; };
@@ -88,6 +92,7 @@
 				40065FFB229FDF02006209C5 /* start.S */,
 				40065FFD229FDF0C006209C5 /* linker.ld */,
 				40065FF8229FDEEB006209C5 /* kernel.cpp */,
+				4084EAA322BA453E00E115D0 /* string.cpp */,
 			);
 			path = src;
 			sourceTree = "<group>";
@@ -99,6 +104,8 @@
 				40C5602E22A02F1200748DD7 /* fonts.h */,
 				40C5602F22A033BD00748DD7 /* asm */,
 				40C5602B22A02B4100748DD7 /* ctype.h */,
+				4084EAA522BA454B00E115D0 /* string.h */,
+				4084EAA622BA733200E115D0 /* PiDebuggerConstant.h */,
 				4006600B229FE1B0006209C5 /* pi */,
 				40066000229FDF37006209C5 /* sys */,
 			);
@@ -232,6 +239,7 @@
 				40C5602922A014E100748DD7 /* mailbox.cpp in Sources */,
 				40C5602D22A02B9600748DD7 /* ctype.cpp in Sources */,
 				40066018229FF0D7006209C5 /* dummy.cpp in Sources */,
+				4084EAA422BA453E00E115D0 /* string.cpp in Sources */,
 				4006600E229FE238006209C5 /* uart.cpp in Sources */,
 				40C88575229FF789006A3732 /* graphics.cpp in Sources */,
 			);

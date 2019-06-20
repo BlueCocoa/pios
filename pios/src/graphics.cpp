@@ -12,7 +12,7 @@
 #include <ctype.h>
 #include <fonts.h>
 
-#ifdef DEBUG
+#if DEBUG
 #include <pi/uart.h>
 #endif
 
@@ -105,7 +105,7 @@ bool graphics::init(uint32_t width, uint32_t height, uint32_t depth, bool double
     uint32_t request = (uint32_t)((uint64_t)&frame_buffer_info) + 0xC0000000;
     request >>= 4;
 
-#ifdef DEBUG
+#if DEBUG
     UART::write("frame_buffer_info: ");
     UART::write_digit64((uint64_t)&frame_buffer_info);
     UART::write_line("");
@@ -127,7 +127,7 @@ bool graphics::init(uint32_t width, uint32_t height, uint32_t depth, bool double
     do {
         ret = mailbox::read(1);
 
-#ifdef DEBUG
+#if DEBUG
         UART::write("frame_buffer_info VA: ");
         UART::write_digit32(frame_buffer_info.buffer_ptr);
         UART::write_line("");

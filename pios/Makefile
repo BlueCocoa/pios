@@ -7,7 +7,7 @@ CC = gcc
 CPP = g++
 
 ARCH ?= -march=armv8-a -mtune=cortex-a53
-CFLAGS = $(ARCH) -DDEBUG -Wall -nostdinc -nostdlib -fno-builtin -nostartfiles -ffreestanding -Iinclude -mgeneral-regs-only
+CFLAGS = $(ARCH) -Wall -nostdinc -nostdlib -fno-builtin -nostartfiles -ffreestanding -Iinclude -mgeneral-regs-only
 CPPFLAGS += $(CFLAGS) -std=c++14 -fno-exceptions -fno-rtti -nostartfiles
 ASMFLAGS = -Iinclude
 
