@@ -9,7 +9,7 @@ Naive OS for Raspberry Pi
 
 #### build environment
 
-Using docker to get a cross-compile environment, this is possibly the quickest and easest way.
+Using docker to get a cross-compile environment, this is possibly the quickest and easiest way.
 
 ```bash
 docker build -t pios .
